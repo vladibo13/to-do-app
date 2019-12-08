@@ -14,10 +14,25 @@ const initialState = {
 
 export default function itemReducer(state = initialState, action) {
 	switch (action.type) {
-		case Actions.GET_ITEMS:
+		case Actions.GET_ITEMS: {
+			console.log('get item reducer...');
 			return {
 				...state
 			};
+		}
+		case Actions.DELETE_ITEM: {
+			console.log('delete item reducer...');
+			return {
+				...state,
+				items: state.items.filter((todo) => todo.id !== action.payload)
+			};
+		}
+		case Actions.ADD_ITEM: {
+			return {
+				...state,
+				items: [ action.payload, ...state.items ]
+			};
+		}
 		default:
 			return state;
 	}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getItems } from '../../redux/actions/itemsAction';
+import { getItems, deleteItem } from '../../redux/actions/itemsAction';
 import {
 	Container,
 	ListGroup,
@@ -24,19 +24,9 @@ class ToDoList extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		console.log(this.props);
-	}
-
-	addToDo = () => {
-		// const newItemsList = [ ...this.state.items, { id: uuid(), name: this.state.todo } ];
-		// this.setState({ items: newItemsList, todo: '' });
-	};
-
-	deleteToDo = (id) => {
-		// const filtredArray = this.state.items.filter((todo) => todo.id !== id);
-		// this.setState({ items: filtredArray });
-	};
+	// componentDidMount() {
+	// 	this.props.getItems();
+	// }
 
 	handleInput = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
@@ -45,31 +35,9 @@ class ToDoList extends React.Component {
 		const { items } = this.props.item;
 		return (
 			<div>
-				<Container>
-					<InputGroup className="mb-3">
-						<Input
-							value={this.state.todo}
-							onChange={this.handleInput}
-							className="w-100"
-							type="text"
-							name="todo"
-							id="todo"
-							placeholder="Add To Do"
-						/>
-						<InputGroupAddon addonType="append">
-							<Button onClick={this.addToDo} type="button" color="success">
-								Add To Do
-							</Button>
-						</InputGroupAddon>
-					</InputGroup>
-					<ListGroup>
-						<Row>
-							{items.map((item) => (
-								<ToDoListItem deleteToDo={this.deleteToDo} key={item.id} item={item} />
-							))}
-						</Row>
-					</ListGroup>
-				</Container>
+				<ListGroup>
+					<Row>{items.map((item) => <ToDoListItem key={item.id} item={item} />)}</Row>
+				</ListGroup>
 			</div>
 		);
 	}
@@ -77,7 +45,7 @@ class ToDoList extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getItems: () => dispatch(getItems)
+		getItems: () => dispatch(getItems())
 	};
 };
 
