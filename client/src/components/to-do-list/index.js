@@ -24,9 +24,9 @@ class ToDoList extends React.Component {
 		};
 	}
 
-	// componentDidMount() {
-	// 	this.props.getItems();
-	// }
+	componentDidMount() {
+		this.props.getItems();
+	}
 
 	handleInput = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
@@ -36,7 +36,7 @@ class ToDoList extends React.Component {
 		return (
 			<div>
 				<ListGroup>
-					<Row>{items.map((item) => <ToDoListItem key={item.id} item={item} />)}</Row>
+					<Row>{items.map((item) => <ToDoListItem key={item._id} item={item} />)}</Row>
 				</ListGroup>
 			</div>
 		);

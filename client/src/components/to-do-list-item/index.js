@@ -13,7 +13,7 @@ class ToDoListItem extends React.Component {
 			<Col sm="6" className="my-2">
 				<ListGroupItem>
 					<p>{item.name} </p>
-					<Button onClick={() => deleteItem(item.id)} color="danger">
+					<Button onClick={() => deleteItem(item._id)} color="danger">
 						Delete
 					</Button>
 				</ListGroupItem>

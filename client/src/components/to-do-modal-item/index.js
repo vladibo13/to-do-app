@@ -2,14 +2,13 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/actions/itemsAction';
-import uuid from 'uuid';
 
 class ToDoModalItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			modal: false,
-			todo: ''
+			name: ''
 		};
 	}
 	handleInput = (e) => {
@@ -20,7 +19,7 @@ class ToDoModalItem extends React.Component {
 	};
 
 	addToDo = () => {
-		const newItemsList = { id: uuid(), name: this.state.todo };
+		const newItemsList = { name: this.state.name };
 		this.props.addItem(newItemsList);
 		this.toggle();
 		// this.setState({ items: newItemsList, todo: '' });
@@ -40,11 +39,11 @@ class ToDoModalItem extends React.Component {
 					<ModalBody>
 						<InputGroup className="mb-3">
 							<Input
-								value={this.state.todo}
+								value={this.state.name}
 								onChange={this.handleInput}
 								className="w-100"
 								type="text"
-								name="todo"
+								name="name"
 								id="todo"
 								placeholder="Add To Do"
 							/>

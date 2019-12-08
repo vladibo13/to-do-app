@@ -4,6 +4,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const itemsRoutes = require('./routes/items');
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.json());
 mongoose.connect(

@@ -2,14 +2,8 @@ import Actions from '../actions/action.config';
 import uuid from 'uuid';
 
 const initialState = {
-	items: [
-		{ id: uuid(), name: 'first' },
-		{ id: uuid(), name: 'second' },
-		{ id: uuid(), name: 'third' },
-		{ id: uuid(), name: 'fourth' },
-		{ id: uuid(), name: 'fifth' },
-		{ id: uuid(), name: 'six' }
-	]
+	items: [],
+	loading: false
 };
 
 export default function itemReducer(state = initialState, action) {
@@ -17,20 +11,28 @@ export default function itemReducer(state = initialState, action) {
 		case Actions.GET_ITEMS: {
 			console.log('get item reducer...');
 			return {
-				...state
+				...state,
+				items: action.payload,
+				loading: false
 			};
 		}
 		case Actions.DELETE_ITEM: {
 			console.log('delete item reducer...');
 			return {
 				...state,
-				items: state.items.filter((todo) => todo.id !== action.payload)
+				items: state.items.filter((todo) => todo._id !== action.payload)
 			};
 		}
 		case Actions.ADD_ITEM: {
 			return {
 				...state,
 				items: [ action.payload, ...state.items ]
+			};
+		}
+		case Actions.ITEMS_LOADING: {
+			return {
+				...state,
+				loading: true
 			};
 		}
 		default:
