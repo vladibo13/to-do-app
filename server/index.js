@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const itemsRoutes = require('./routes/items');
+const usersRoutes = require('./routes/users');
 const cors = require('cors');
 
 app.use(cors());
@@ -22,6 +23,7 @@ mongoose.connect(
 );
 
 app.use('/api/items', itemsRoutes);
+app.use('/api/users', usersRoutes);
 app.get('/', (req, res, next) => {
 	res.json({
 		msg: 'hello world'
