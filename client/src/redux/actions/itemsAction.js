@@ -1,14 +1,17 @@
 import Actions from './action.config';
 import axios from 'axios';
+import { getItemsService } from '../service';
 
 export const getItems = () => {
 	return async (dispatch) => {
-		try {
-			const items = await axios.get('http://localhost:5000/api/items');
-			dispatch(getItemsAction(items.data));
-		} catch (e) {
-			console.log(e);
-		}
+		// try {
+		// 	const items = await axios.get('http://localhost:5000/api/items');
+		// 	dispatch(getItemsAction(items.data));
+		// } catch (e) {
+		// 	console.log(e);
+		// }
+		const items = await getItemsService();
+		dispatch(getItemsAction(items));
 	};
 };
 

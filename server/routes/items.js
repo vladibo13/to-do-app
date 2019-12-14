@@ -13,6 +13,8 @@ router.get('/', async (req, res, next) => {
 	}
 });
 
+router.use(authValidation);
+
 router.delete('/:id', async (req, res, next) => {
 	try {
 		const itemToDelete = await Item.findById(req.params.id);
